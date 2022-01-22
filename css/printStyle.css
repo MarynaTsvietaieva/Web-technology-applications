@@ -1,0 +1,22 @@
+html{
+    font-family: "Times New Roman", serif;
+    font-size: 13pt;
+    color: black;
+}
+body{
+	background-color: #FFFFFF;
+    width: 100%;
+}
+body > aside, body > nav, svg, #menuTitle, .buttons_grid{
+    display: none;
+}
+h1, h2,table, p,ol,ul,dt, figcaption, div{
+	font-family: "Times New Roman", serif;
+	color: black;
+}
+body > p{
+	color: black;
+}
+h1, h2,table,ol,ul{
+    page-break-inside: avoid;
+}

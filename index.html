@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+<html lang="sk">
+<head>
+    <link href="css/vinoBlog.css" rel="stylesheet">
+    <link href="css/printStyle.css" rel="stylesheet" media="print">
+    <meta charset="utf-8">
+    <meta name="google-signin-client_id"
+          content="762815749094-fok2cfoe7n5g96mg7hfc3pg3sq9toosd.apps.googleusercontent.com">
+    <script src="js/routes.js"></script>
+    <title>VINÁRSKY TURIZMUS</title>
+</head>
+
+<body>
+
+<header>
+    <h1 style=" background-color: #311800; width: 360px;  margin:9.5rem 1rem 0 1rem">VINÁRSKY TURIZMUS</h1>
+    <div class="menu" style = "width: 46%; float: left">
+
+        <button id="menuTitle" class = "nav" style = "margin: 2.5rem 1rem 1rem 1rem;">Menu</button>
+
+        <nav id="menuIts" class="menu mnHide">
+            <a href="#uvod" class = "a">Úvod</a>
+            <a href="#articles/0/" class = "a">Články</a>
+            <a href="#articles///1" class = "a">Moje články</a>
+            <a href="#artInsert" class = "a">Pridajte svoj článok</a>
+            <a href="#opinions" class = "a">Názory návštevníkov</a>
+            <a href="#addOpinion" class = "a">Pridajte svoj názor</a>
+        </nav>
+
+    </div>
+
+    <div id="login" style = "width: 46%; float:right">
+        <div class="g-signin2" data-onsuccess="onSignIn" style = "margin: 2rem 1rem 1rem 1rem; float:right"></div>
+    </div>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+
+            console.log('Úplné meno: ' + profile.getName());
+            console.log('Meno: ' + profile.getGivenName());
+            console.log('Priezvisko: ' + profile.getFamilyName());
+            console.log("Obrázok profilu: " + profile.getImageUrl());
+            console.log("Email: " + profile.getEmail());
+
+            var id_token = googleUser.getAuthResponse().id_token;
+            console.log("ID Token: " + id_token);
+
+            document.querySelector("#login").innerHTML = "<p class='logout login'>Vitajte " + profile.getGivenName() +
+                "! Kliknite pre <a href='#' class = 'a' style='color: white' onclick='signOut();'>odhlásenie</a>.</p>";
+
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                alert("Boli ste odhlásený...");
+                location.reload();
+            });
+        }
+    </script>
+</header>
+
+<aside>
+    <div class = "div div1"></div>
+</aside>
+<aside>
+    <p class = "absolute" style="color: #341d08; font-weight: bold">Viac informácií</p>
+    <br>
+    <ul class = "absolute">
+        <li class = "transform"><a href="https://salonvin.sk/vinarsky-turizmus/" class = "a">Národný salón vín</a></li>
+        <li class = "transform"><a href="https://www.slovenskyvidiek.sk/vinarsky-turizmus-v-produktovej-skupine-vidieckeho-turizmu-a-agroturizmu/" class = "a">Slovenský vidiek.</a></li>
+        <li class = "transform"><a href="http://www.regionnitra.sk/nastiahnutie/brozury/vino_SK-ENG.pdf" class = "a"> Winetourism</a></li>
+    </ul>
+</aside>
+
+<nav>
+    <div class = "div div2"></div>
+</nav>
+<nav id="menu">
+    <p class = "absolute" style="color: #341d08;font-weight: bold">Navigácia v blogu: </p>
+    <br>
+    <ul class = "absolute">
+        <li class = "transform"><a href="#uvod" class = "a">Úvod!</a></li>
+        <li class = "transform"><a href="#articles/0" class = "a">Články</a></li>
+        <li class = "transform"><a href="#articles///1" class = "a">Moje články</a>
+        <li class = "transform"><a href="#artInsert" class = "a">Pridajte svoj článok</a></li>
+        <li class = "transform"><a href="#opinions" class = "a">Názory návštevníkov</a></li>
+        <li class = "transform"><a href="#addOpinion" class = "a">Pridajte svoj názor</a></li>
+    </ul>
+</nav>
+
+<main id="router-view">
+</main>
+
+<footer>
+    <div class="col-25">
+    <svg>
+        <polygon points="10,10 45,40 25,40" fill="green"/>
+        <polygon points="25,5 45,40 25,40" fill="green"/>
+        <polygon points="50,10 45,40 20,40" fill="green" />
+        <circle cx="20" cy="30" r="10" stroke="#68181d" stroke-width="1" fill="#bb1813" />
+        <circle cx="35" cy="30" r="10" stroke="#68181d" stroke-width="1" fill="#bb1813" />
+        <circle cx="50" cy="30" r="10" stroke="#68181d" stroke-width="1" fill="#bb1813" />
+        <circle cx="25" cy="40" r="10" stroke="#68181d" stroke-width="1" fill="#bb1813" />
+        <circle cx="40" cy="40" r="10" stroke="#68181d" stroke-width="1" fill="#bb1813" />
+        <circle cx="30" cy="50" r="10" stroke="#68181d" stroke-width="1" fill="#bb1813" />
+    </svg>
+    </div>
+    <div class="col-75">
+        <p> Maryna Tsvietaieva <a href="mailto:20maryna03@gmail.com" class = "a">mail</a></p>
+    </div>
+</footer>
+
+<script id="template-uvod" type="text/template">
+    <article>
+        <h2> Vinársky turizmus</h2>
+        <p>Dejiny pestovania viniča a dorábania vína siahajú až k Sumerom a Egypťanom do
+            obdobia temer 4000 rokov pr. n. l., kam sa táto rastlina dostala zrejme zo strednej
+            Ázie a Kaukazu.Archeologické nálezy dokladajú jeho pestovanie v 7. a 6. stor. pr. n. l. i na území
+            Slovenska (nález vinohradníckych nožov a keramickej nádoby na víno v lokalite Molpír).
+            Vinohradníctvu sa venovali aj Kelti, ktorí sa tu usadzujú od 5. stor. pr. n. l.
+            (nálezy z Devína, Devínskej Novej Vsi). Ušľachtilé odrody viniča sa však rozšírili zrejme až
+            zásluhou Rimanov (od 2. stor. pr. n. l.), od ktorých prevzali tradíciu jeho pestovania a dorábania
+            hroznového vína slovanské kmene (nález vinohradníckych nožov z prelomu 8. a 9. stor. v
+            lokalite Moravský Svätý Ján). Práve z územia Nitrianskeho kraja sa zachovala aj prvá písomná zmienka,
+            v ktorej sa Nitra uvádza ako mesto bohaté na vinice (zač. 9. stor.). K rozvoju vinohradníctva prispelo
+            aj pôsobenie mníchov z benediktínskeho kláštora sv. Hyppolita na vrchu Zobor (koniec 9. stor.).
+            Vinohrady a víno z územia dnešného Slovenska si v ďalších storočiach vyslúžili priazeň mnohých
+            panovníkov - vína sa v hojnej miere dostávali i na kráľovské dvory. Bolo to práve tokajské víno, pri
+            ochutnaní ktorého vyslovil francúzsky kráľ Ľudovít XIV. príslovečný výrok: „Vinum regis - rex vinorum“
+            (Víno kráľov - kráľ vín). </p>
+    </article>
+</script>
+
+<script id="template-articles" type="text/template">
+    <article>
+        <div class = "form_help">
+            {{#articles}}
+            <div class = "article articleFlex">
+              <h2><a href="{{detailLink}}" class = "a">{{title}}</a></h2>
+               <p>
+                   by {{author}}
+               </p>
+               <div>
+                   {{{content}}}
+               </div>
+            </div>
+            {{/articles}}
+        </div>
+        <div class = "buttons_grid">
+            {{#prevPage}}
+                 <a href="#articles/0/{{totalCount}}/{{ifMy}}" class = "buttons" style="float:left; margin: 0.6rem 0.6rem 0.6rem 0px;">Prva</a>
+                 <a href="#articles/{{prevPage2}}/{{totalCount}}/{{ifMy}}" class = "buttons" style="float:left; margin: 0.6rem;">Predchádzajúca</a>
+            {{/prevPage}}
+            <p style ="margin-top: 1.5rem;"> {{current}} - {{nextPage2}}</p>
+            {{#nextPage}}
+                 <a href="#articles/{{nextPage}}/{{totalCount}}/{{ifMy}}" class = "buttons" style="float:right;margin: 0.6rem;">Ďalšia</a>
+                 <a href="#articles/{{lastPage}}/{{totalCount}}/{{ifMy}}" class = "buttons" style="float:right; margin: 0.6rem 0px 0.6rem 0.6rem;">Posledna</a>
+            {{/nextPage}}
+        </div>
+    </article>
+</script>
+
+<script id="template-articles-error" type="text/template">
+    <article>
+        <h2>Articles acquisition failed</h2>
+        <p>
+            {{errMessage}}
+        </p>
+    </article>
+</script>
+
+<script id="template-addOpinion" type="text/template">
+    <article  id="artOpnFrm">
+        <h2>Spätná väzba</h2>
+        <p>Tu môžete vyjadriť svoj názor na môj článok</p>
+        <form id="opnFrm">
+            <label for="name">Meno:</label>
+                <input id="name" type="text" name="username" required placeholder="Napríklad: Josef"/>
+            <br><br>
+                <label for="email">Email:</label>
+                <input id = "email" type="email" name = "email" required placeholder="Napríklad: josef@gmail.com"/>
+            <br><br>
+                <label for="url">Vaše doplnky:</label>
+                <input id = "url" type="url" name = "url"/>
+            <br><br>
+                <label>Obľúbené víno:</label>
+                <input type="radio" id="cervene" name="vino" value="cervene" checked="checked">
+                <label for="cervene">červené</label>
+
+                <input type="radio" id="biele" name="vino" value="biele">
+                <label for="biele">biele</label>
+            <br><br>
+                <label>Ktoré ste navštívili?</label>
+                <input type="checkbox" id="malokarpat" name="oblasti" value="malokarpat" checked="checked">
+                <label for="malokarpat">Malokarpatská</label>
+
+                <input type="checkbox" id="uzna" name="oblasti" value="uzna">
+                <label for="uzna">Južno-slovenská</label>
+
+                <input type="checkbox" id="nitra" name="oblasti" value="nitra">
+                <label for="nitra">Nitrianská</label>
+
+                <input type="checkbox" id="vychod" name="oblasti" value="vychod">
+                <label for="vychod">Východoslovenská</label>
+
+            <br><br>
+                <label for="nazor">Váš názor:</label>
+                <textarea id="nazor" name="subject" required placeholder="Vaša spätná väzba je pre nás veľmi dôležitá" style="height:100px"></textarea>
+            <br><br>
+                <label for="keys"> Kľúčové slová</label>
+                <input id="keys" type="text" name="kluce" list="kluce"/>
+                <datalist id="kluce">
+                    <option>vino</option>
+                    <option>turizmus</option>
+                    <option>vinárske oblasti</option>
+                    <option>vinárstvo</option>
+                    <option>cestovanie</option>
+                    <option>návrat k prírode</option>
+                </datalist>
+            <br><br>
+                <input type="reset" value="Resetovať">
+                <input type="submit" value="Poslať">
+            <br><br>
+        </form>
+    </article>
+</script>
+
+<script id="template-opinions" type="text/template">
+    <article  id="artOpinions">
+        <h2>Visitor Opinions</h2>
+        <br>
+        {{#.}}
+        <section style = "border-style: inset; border-radius: 20px; margin-bottom: 20px;">
+            <section>
+                <h3>{{name}} <i>{{createdDate}}</i></h3>
+                <p>{{mail}}</p>
+                <p>Názor: {{opinion}}</p>
+            </section>
+            <section class = "form_help">
+                <p class = "form_item">Doplnky: {{additions}}</p>
+                <p class = "form_item">Obľúbené víno: {{wine}}</p>
+                <p class = "form_item">Už si navštívil: {{areas}}</p>
+                <p class = "form_item">Kľúčové slová: {{keys}}</p>
+            </section>
+        </section>
+        {{/.}}
+        {{^.}}
+        <section>
+            Sorry, no opinions found.
+        </section>
+        {{/.}}
+    </article>
+</script>
+
+<script id="template-article" type="text/template">
+    <article>
+        <h2>{{title}}</h2>
+        <p>
+            by {{author}}
+        </p>
+        {{#imageLink}}
+        <figure>
+            <img style = "width:95%" src="{{imageLink}}" alt="article figure" />
+        </figure>
+        {{/imageLink}}
+        <div>{{{content}}}</div>
+        <p>
+            Keywords:
+            {{tags}}
+        </p>
+    </article>
+
+    <footer class = "buttons_grid">
+        <a href="{{backLink}}" class="buttons"><< Späť</a>
+        <a href="{{editLink}}" class="buttons">Upraviť</a>
+        <a href="{{deleteLink}}" class="buttons">Vymazať</a>
+        <a href="#menuTitle" class="nav buttons">Do menu</a>
+        <a href="#menu" class="menu_nav buttons">Do menu</a>
+    </footer>
+
+    <article>
+        <h2 style = "margin-bottom: 1rem"> Komentáre </h2>
+        {{#comments}}
+            <div class = "article" style = "margin: 1rem 2rem 1rem 2rem">
+               <h3>{{author}}</h3> <p> {{text}}</p>
+            </div>
+        {{/comments}}
+        <div class = "buttons_grid">
+        {{#prevComment}}
+             <a href="#article/{{artId}}/{{offset}}/{{totalCount}}/{{prevComment2}}/{{ifMy}}" class = "buttons" style="float:right;margin: 0.6rem;">Predchádzajúca</a>
+        {{/prevComment}}
+        {{#nextComment}}
+             <a href="#article/{{artId}}/{{offset}}/{{totalCount}}/{{nextComment}}/{{ifMy}}" class = "buttons" style="float:right;margin: 0.6rem;">Ďalšia</a>
+        {{/nextComment}}
+        </div>
+    </article>
+
+    <input type="button" value="Pridať komentár" id="addComment" class="button" style = "float: left" onclick="disp(document.getElementById('commentsForm'), document.getElementById('addComment'))"/>
+    <article id="commentsForm" style="display: none;">
+        <h2>Spätná väzba</h2><br>
+        <form>
+            <label for="author">autor: </label>
+            <input type="text" name="author" id="commentAuthor" size="50"
+               title="Article author, max. length 100 characters."
+               maxlength="100" placeholder="Napríklad: Josef" />
+            <br>
+            <label for="commentText">komentár:</label>
+            <textarea
+                name="commentText" id="commentText" spellcheck="true" lang="sk"
+                rows="10" required placeholder="tu môžete napísať komentár">
+            </textarea>
+            <button type="submit" class="button" >  Poslať </button>
+            <button type="reset" class="button"> Resetvať </button>
+            <input type="button" value="Zrušiť" class="button" style = "float: left"  onclick="disp(document.getElementById('commentsForm'), document.getElementById('addComment'))"/>
+        </form>
+    </article>
+</script>
+
+<script id="template-article-form" type="text/template">
+    <article>
+        <h2>{{formTitle}}</h2> <br><br>
+
+        <form id="articleForm">
+            <label for="author">Author:</label>
+            <input type="text" name="author" id="author" value="{{author}}" size="50"
+                   title="Article author, max. length 100 characters."
+                   maxlength="100" placeholder="" />
+            <br>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" value="{{title}}" size="50"
+                   maxlength="100" pattern="\S[\S\s]*" placeholder="e.g. My story." required
+                   title="Article title, mandatory item, max. length: 100 characters.
+The first character must not be a space."  />
+            <br>
+            <label for="imageLink">Image (url):</label>
+            <input type="url" name="imageLink" id="imageLink" value="{{imageLink}}" size="50"
+                   title="Image URL, max. length 100 characters." maxlength="100"/>
+            <br>
+            <label></label>
+            <button type="button" id="btShowFileUpload" class="button">
+                Upload image
+            </button>
+
+            <fieldset class="added hiddenElm" id="fsetFileUpload">
+                <legend>Image Upload</legend>
+                <input type="file" id="flElm" name="file" accept="image/jpeg, image/png"/>
+                <br />
+                <button type="button" id="btFileUpload" class="button">
+                    Send image to server </button>
+                <button type="button" id="btCancelFileUpload" class="button">
+                    Cancel uploading </button>
+            </fieldset>
+
+            <br>
+            <label for="content">Article content:</label>
+            <textarea
+                    name="content" id="content" spellcheck="true" lang="sk"
+                    cols="50" rows="20" required
+                    title="Article content, mandatory item, can be plain text or in HTML.">
+              {{content}}
+            </textarea>
+            <br>
+            <label for="tags">Keywords:</label>
+            <input  type="text" name="tags" id="tags" value="{{tags}}" size="50"
+                    title="Keyword list, comma separated." placeholder="e.g. village, drama" />
+            <br> <br>
+            <button type="reset" class="button"> Reset Form </button>
+            <button type="submit" class="button"> {{submitBtTitle}} </button>
+
+        </form>
+    </article>
+
+    <footer>
+        <a href="{{backLink}}" class="buttons"><< Späť</a>
+        <a href="#menuTitle" class="nav buttons">Do menu</a>
+        <a href="#menu" class="menu_nav buttons">Do menu</a>
+    </footer>
+</script>
+
+
+<script>
+    function disp(form,button) {
+        if (form.style.display == "none") {
+            form.style.display = "block";
+            button.style.display = "none";
+        } else {
+            form.style.display = "none";
+            button.style.display= "block"
+        }
+    }
+</script>
+<script  src="js/mustache.min.js"></script>
+<script  src="js/mustache.js"></script>
+<script type="module" src="js/index.js"></script>
+<script src="js/addOpinion.js"></script>
+<script src="js/articleFormsHandler.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+</html>

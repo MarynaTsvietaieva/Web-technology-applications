@@ -61,9 +61,6 @@ export default[
     }
     ];
 
-$.ajaxSetup({
-    async: false
-});
 const urlBase = "https://wt.kpi.fei.tuke.sk/api";
 const articlesPerPage = 20;
 const commentPerPage = 5;
